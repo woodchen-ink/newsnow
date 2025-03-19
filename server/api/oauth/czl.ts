@@ -2,19 +2,6 @@ import process from "node:process"
 import { SignJWT } from "jose"
 import { UserTable } from "#/database/user"
 
-interface TokenResponse {
-  access_token: string
-  token_type: string
-  scope: string
-}
-
-interface UserInfoResponse {
-  id: string
-  name: string
-  avatar_url: string
-  email: string
-}
-
 export default defineEventHandler(async (event) => {
   // 添加调试信息
   console.log("CZL Connect OAuth 回调被访问")
@@ -46,91 +33,166 @@ export default defineEventHandler(async (event) => {
     }
 
     console.log("请求访问令牌...")
-    // 交换授权码获取访问令牌
-    let tokenResponse: TokenResponse
+    // 构建表单数据，使用x-www-form-urlencoded格式
+    const formData = new URLSearchParams()
+    formData.append("client_id", process.env.CZL_CLIENT_ID)
+    formData.append("client_secret", process.env.CZL_CLIENT_SECRET)
+    formData.append("code", code.toString())
+    formData.append("grant_type", "authorization_code")
+    formData.append("redirect_uri", process.env.CZL_REDIRECT_URI)
+
+    // 第一种方式：使用fetch原生API
     try {
-      tokenResponse = await $fetch<TokenResponse>("https://connect.czl.net/api/oauth2/token", {
+      const response = await fetch("https://connect.czl.net/api/oauth2/token", {
         method: "POST",
-        body: {
-          client_id: process.env.CZL_CLIENT_ID,
-          client_secret: process.env.CZL_CLIENT_SECRET,
-          code,
-          grant_type: "authorization_code",
-          redirect_uri: process.env.CZL_REDIRECT_URI,
-        },
         headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
           "Accept": "application/json",
-          "Content-Type": "application/json",
+          "User-Agent": "NewsNow App",
         },
+        body: formData,
       })
-    } catch (err) {
-      console.error("获取访问令牌失败:", err)
-      throw createError({
-        statusCode: 400,
-        message: "Failed to exchange authorization code for access token",
-      })
-    }
 
-    if (!tokenResponse || !tokenResponse.access_token) {
-      console.error("访问令牌响应无效:", tokenResponse)
-      throw createError({
-        statusCode: 400,
-        message: "Invalid token response",
-      })
-    }
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`)
+      }
 
-    console.log("获取到访问令牌:", !!tokenResponse.access_token)
+      const tokenResponse = await response.json()
 
-    // 获取用户信息
-    console.log("请求用户信息...")
-    let userInfo: UserInfoResponse
-    try {
-      userInfo = await $fetch<UserInfoResponse>("https://connect.czl.net/api/oauth2/userinfo", {
+      if (!tokenResponse || !tokenResponse.access_token) {
+        console.error("访问令牌响应无效:", tokenResponse)
+        throw createError({
+          statusCode: 400,
+          message: "Invalid token response",
+        })
+      }
+
+      console.log("获取到访问令牌:", !!tokenResponse.access_token)
+
+      // 获取用户信息
+      console.log("请求用户信息...")
+      const userInfoResponse = await fetch("https://connect.czl.net/api/oauth2/userinfo", {
         headers: {
           "Accept": "application/json",
           "Authorization": `Bearer ${tokenResponse.access_token}`,
           "User-Agent": "NewsNow App",
         },
       })
-    } catch (err) {
-      console.error("获取用户信息失败:", err)
-      throw createError({
-        statusCode: 400,
-        message: "Failed to fetch user information",
+
+      if (!userInfoResponse.ok) {
+        throw new Error(`HTTP error! Status: ${userInfoResponse.status}`)
+      }
+
+      const userInfo = await userInfoResponse.json()
+
+      if (!userInfo || !userInfo.id) {
+        console.error("用户信息响应无效:", userInfo)
+        throw createError({
+          statusCode: 400,
+          message: "Invalid user info response",
+        })
+      }
+
+      console.log("获取到用户信息:", !!userInfo.id)
+
+      const userID = userInfo.id
+      await userTable.addUser(userID, userInfo.email, "czl")
+
+      const jwtToken = await new SignJWT({
+        id: userID,
+        type: "czl",
       })
-    }
+        .setExpirationTime("60d")
+        .setProtectedHeader({ alg: "HS256" })
+        .sign(new TextEncoder().encode(process.env.JWT_SECRET!))
 
-    if (!userInfo || !userInfo.id) {
-      console.error("用户信息响应无效:", userInfo)
-      throw createError({
-        statusCode: 400,
-        message: "Invalid user info response",
+      // 返回登录参数
+      const params = new URLSearchParams({
+        login: "czl",
+        jwt: jwtToken,
+        user: JSON.stringify({
+          avatar: userInfo.avatar_url,
+          name: userInfo.name,
+        }),
       })
+      return sendRedirect(event, `/?${params.toString()}`)
+    } catch (fetchError) {
+      console.error("使用fetch失败:", fetchError)
+
+      // 第二种方式：退回到使用myFetch
+      try {
+        console.log("尝试使用myFetch...")
+        const tokenResponse = await myFetch(
+          `https://connect.czl.net/api/oauth2/token`,
+          {
+            method: "POST",
+            body: Object.fromEntries(formData),
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              "Accept": "application/json",
+            },
+          },
+        )
+
+        if (!tokenResponse || !tokenResponse.access_token) {
+          console.error("访问令牌响应无效:", tokenResponse)
+          throw createError({
+            statusCode: 400,
+            message: "Invalid token response",
+          })
+        }
+
+        console.log("获取到访问令牌:", !!tokenResponse.access_token)
+
+        // 获取用户信息
+        console.log("请求用户信息...")
+        const userInfo = await myFetch(`https://connect.czl.net/api/oauth2/userinfo`, {
+          headers: {
+            "Accept": "application/json",
+            "Authorization": `Bearer ${tokenResponse.access_token}`,
+            "User-Agent": "NewsNow App",
+          },
+        })
+
+        if (!userInfo || !userInfo.id) {
+          console.error("用户信息响应无效:", userInfo)
+          throw createError({
+            statusCode: 400,
+            message: "Invalid user info response",
+          })
+        }
+
+        console.log("获取到用户信息:", !!userInfo.id)
+
+        const userID = userInfo.id
+        await userTable.addUser(userID, userInfo.email, "czl")
+
+        const jwtToken = await new SignJWT({
+          id: userID,
+          type: "czl",
+        })
+          .setExpirationTime("60d")
+          .setProtectedHeader({ alg: "HS256" })
+          .sign(new TextEncoder().encode(process.env.JWT_SECRET!))
+
+        // 返回登录参数
+        const params = new URLSearchParams({
+          login: "czl",
+          jwt: jwtToken,
+          user: JSON.stringify({
+            avatar: userInfo.avatar_url,
+            name: userInfo.name,
+          }),
+        })
+        return sendRedirect(event, `/?${params.toString()}`)
+      } catch (myFetchError) {
+        console.error("使用myFetch也失败:", myFetchError)
+        throw createError({
+          statusCode: 400,
+          message: "Failed to exchange authorization code for access token after multiple attempts",
+        })
+      }
     }
-
-    console.log("获取到用户信息:", !!userInfo.id)
-
-    const userID = userInfo.id
-    await userTable.addUser(userID, userInfo.email, "czl")
-
-    const jwtToken = await new SignJWT({
-      id: userID,
-      type: "czl",
-    })
-      .setExpirationTime("60d")
-      .setProtectedHeader({ alg: "HS256" })
-      .sign(new TextEncoder().encode(process.env.JWT_SECRET!))
-
-    // 返回登录参数
-    const params = new URLSearchParams({
-      login: "czl",
-      jwt: jwtToken,
-      user: JSON.stringify({
-        avatar: userInfo.avatar_url,
-        name: userInfo.name,
-      }),
-    })
-    return sendRedirect(event, `/?${params.toString()}`)
   } catch (error: any) {
     // 处理错误
     console.error("CZL Connect 登录过程中出错:", error)
