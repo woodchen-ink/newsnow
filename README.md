@@ -20,20 +20,32 @@ If login and caching are not required, you can directly deploy to platforms like
 
 For Cloudflare Pages, you need to set the build command to `pnpm run build` and the build output directory to `dist/output/public`.
 
-For login, which involves GitHub OAuth, you only need to [create a GitHub App](https://github.com/settings/applications/new). No special permissions are required. The callback URL should be `https://your-domain.com/api/oauth/github` (replace `your-domain` with your actual domain).
+The login now supports two methods: CZL Connect and Github OAuth:
+
+### CZL Connect Login (Recommended)
+Apply for an application on the CZL Connect platform, set the callback URL to `https://your-domain.com/api/oauth/czl`.
+After obtaining the Client ID and Client Secret, fill them in the environment variables.
+
+### Github OAuth Login (Optional)
+Simply [create a Github App](https://github.com/settings/applications/new) without any permission requests. Set the Callback URL to `https://your-domain.com/api/oauth/github`.
 
 After creating the app, you will get a Client ID and Client Secret. Different platforms have different places to set environment variables; refer to the `example.env.server` file. If running locally, rename it to `.env.server` and add the necessary values.
 
 ```env
-# Github Client ID
+# CZL Connect OAuth (Recommended)
+CZL_CLIENT_ID=
+CZL_CLIENT_SECRET=
+CZL_REDIRECT_URI=https://your-domain.com/api/oauth/czl
+
+# Github OAuth (Optional)
 G_CLIENT_ID=
-# Github Client Secret
 G_CLIENT_SECRET=
-# JWT Secret, usually the same as Client Secret
+
+# JWT Secret, can be a random string
 JWT_SECRET=
-# Initialize database, must be set to true on first run, can be turned off afterward
+# Initialize database, must be true for first run, can be disabled later
 INIT_TABLE=true
-# Whether to enable cache
+# Enable caching
 ENABLE_CACHE=true
 ```
 

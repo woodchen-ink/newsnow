@@ -61,9 +61,14 @@ export function Menu() {
                 : (
                     <li onClick={login}>
                       <span className="i-ph:sign-in-duotone inline-block" />
-                      <span>Github 账号登录</span>
+                      <span>CZL Connect 登录</span>
                     </li>
                   ))}
+              {!loggedIn && enableLogin && (
+                <li className="text-xs op-60 py-1 px-2">
+                  <span>CZL Connect是安全的统一账号登录服务</span>
+                </li>
+              )}
               <ThemeToggle />
               <li onClick={() => window.open(Homepage)}>
                 <span className="i-ph:github-logo-duotone inline-block" />

@@ -19,16 +19,28 @@
 
 Cloudflare Pages 需要填入构建命令 `pnpm run build`, 构建输出文件夹 `dist/output/public`。
 
-登录涉及到 Github Oauth，只需要 [创建一个 Github App](https://github.com/settings/applications/new) 即可，不需要申请任何权限。Callback URL 为 `https://your-domain.com/api/oauth/github`。
+登录现在支持CZL Connect和Github Oauth两种方式：
+
+### CZL Connect登录（推荐）
+到CZL Connect平台申请一个应用，设置回调URL为 `https://your-domain.com/api/oauth/czl`。
+获取到Client ID和Client Secret后，将其填入环境变量。
+
+### Github Oauth登录（可选）
+只需要 [创建一个 Github App](https://github.com/settings/applications/new) 即可，不需要申请任何权限。Callback URL 为 `https://your-domain.com/api/oauth/github`。
 
 然后就会得到 Client ID 和 Client Secret。关于环境变量，不同平台有不同的填写位置，请关注 `example.env.server` 文件。如果本地运行，需要将其重命名为 `.env.server`，然后按照要求添加。
 
 ```env
-# Github Clien ID
+# CZL Connect OAuth (推荐)
+CZL_CLIENT_ID=
+CZL_CLIENT_SECRET=
+CZL_REDIRECT_URI=https://your-domain.com/api/oauth/czl
+
+# Github OAuth (可选)
 G_CLIENT_ID=
-# Github Clien Secret
 G_CLIENT_SECRET=
-# JWT Secret, 通常就用 Clien Secret
+
+# JWT Secret, 通常可以生成一个随机字符串
 JWT_SECRET=
 # 初始化数据库, 首次运行必须设置为 true，之后可以将其关闭
 INIT_TABLE=true

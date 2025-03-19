@@ -24,7 +24,7 @@ export class UserTable {
     logger.success(`init user table`)
   }
 
-  async addUser(id: string, email: string, type: "github") {
+  async addUser(id: string, email: string, type: "github" | "czl") {
     const u = await this.getUser(id)
     const now = Date.now()
     if (!u) {
