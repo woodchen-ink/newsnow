@@ -334,6 +334,20 @@ export const originSources = {
     type: "hottest",
     home: "https://www.baidu.com",
   },
+  "xiaohongshu_sf": {
+    name: "小红书",
+    column: "china",
+    color: "red",
+    type: "hottest",
+    home: "https://www.xiaohongshu.com",
+    sub: {
+      hotlist: {
+        title: "热点",
+        type: "hottest",
+        interval: Time.Realtime,
+      },
+    },
+  },
   "linuxdo": {
     name: "LINUX DO",
     column: "tech",
