@@ -309,7 +309,7 @@ export const originSources = {
     column: "china",
     color: "orange",
     // cloudflare pages cannot access
-    disable: "cf",
+    // disable: "cf",
     home: "https://www.kuaishou.com",
   },
   "kaopu": {
@@ -333,6 +333,13 @@ export const originSources = {
     color: "blue",
     type: "hottest",
     home: "https://www.baidu.com",
+  },
+  "wikipedia": {
+    name: "维基百科热门",
+    column: "world",
+    color: "blue",
+    type: "hottest",
+    home: "https://zh.wikipedia.org",
   },
   "xiaohongshu": {
     name: "小红书",

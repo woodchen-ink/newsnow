@@ -155,6 +155,27 @@
     "interval": 1800000,
     "title": "最新文章"
   },
+  "36kr": {
+    "redirect": "36kr-quick",
+    "name": "36氪",
+    "type": "realtime",
+    "disable": "cf",
+    "column": "tech",
+    "home": "https://36kr.com",
+    "color": "blue",
+    "interval": 600000,
+    "title": "快讯"
+  },
+  "36kr-quick": {
+    "name": "36氪",
+    "type": "realtime",
+    "disable": "cf",
+    "column": "tech",
+    "home": "https://36kr.com",
+    "color": "blue",
+    "interval": 600000,
+    "title": "快讯"
+  },
   "douyin": {
     "name": "抖音",
     "type": "hottest",
@@ -363,6 +384,15 @@
     "interval": 600000,
     "title": "热搜"
   },
+  "kuaishou": {
+    "name": "快手",
+    "type": "hottest",
+    "disable": "cf",
+    "column": "china",
+    "home": "https://www.kuaishou.com",
+    "color": "orange",
+    "interval": 600000
+  },
   "kaopu": {
     "name": "靠谱新闻",
     "desc": "不一定靠谱，多看多思考",
@@ -387,6 +417,14 @@
     "color": "blue",
     "interval": 600000
   },
+  "wikipedia": {
+    "name": "维基百科热门",
+    "type": "hottest",
+    "column": "world",
+    "home": "https://zh.wikipedia.org",
+    "color": "blue",
+    "interval": 600000
+  },
   "xiaohongshu": {
     "redirect": "xiaohongshu-hotlist",
     "name": "小红书",
@@ -405,5 +443,34 @@
     "color": "red",
     "interval": 120000,
     "title": "热点"
+  },
+  "linuxdo": {
+    "redirect": "linuxdo-latest",
+    "name": "LINUX DO",
+    "disable": "cf",
+    "column": "tech",
+    "home": "https://linux.do/latest",
+    "color": "slate",
+    "interval": 600000,
+    "title": "最新"
+  },
+  "linuxdo-latest": {
+    "name": "LINUX DO",
+    "disable": "cf",
+    "column": "tech",
+    "home": "https://linux.do/latest",
+    "color": "slate",
+    "interval": 600000,
+    "title": "最新"
+  },
+  "linuxdo-hot": {
+    "name": "LINUX DO",
+    "type": "hottest",
+    "disable": "cf",
+    "column": "tech",
+    "home": "https://linux.do/hot",
+    "color": "slate",
+    "interval": 1800000,
+    "title": "今日最热"
   }
 }

@@ -11,6 +11,7 @@
   "wallstreetcn-hot": "huaerjiejianwen-zuirewenzhang",
   "meituantech-latest": "meituanjishutuandui-zuixinwenzhang",
   "sspai-latest": "shaoshupai-zuixinwenzhang",
+  "36kr-quick": "36ke-kuaixun",
   "douyin": "douyin",
   "tieba": "baidutieba-reyi",
   "toutiao": "jinritoutiao",
@@ -30,8 +31,12 @@
   "producthunt": "Product Hunt",
   "github-trending-today": "Github-Today",
   "bilibili-hot-search": "bilibili-resou",
+  "kuaishou": "kuaishou",
   "kaopu": "kaopuxinwen",
   "jin10": "jinshishuju",
   "baidu": "baiduresou",
-  "xiaohongshu-hotlist": "xiaohongshu-redian"
+  "wikipedia": "weijibaikeremen",
+  "xiaohongshu-hotlist": "xiaohongshu-redian",
+  "linuxdo-latest": "LINUX DO-zuixin",
+  "linuxdo-hot": "LINUX DO-jinrizuire"
 }
