@@ -11,7 +11,6 @@
   "wallstreetcn-hot": "huaerjiejianwen-zuirewenzhang",
   "meituantech-latest": "meituanjishutuandui-zuixinwenzhang",
   "sspai-latest": "shaoshupai-zuixinwenzhang",
-  "36kr-quick": "36ke-kuaixun",
   "douyin": "douyin",
   "tieba": "baidutieba-reyi",
   "toutiao": "jinritoutiao",
@@ -36,7 +35,5 @@
   "jin10": "jinshishuju",
   "baidu": "baiduresou",
   "wikipedia": "weijibaikeremen",
-  "xiaohongshu-hotlist": "xiaohongshu-redian",
-  "linuxdo-latest": "LINUX DO-zuixin",
-  "linuxdo-hot": "LINUX DO-jinrizuire"
+  "xiaohongshu-hotlist": "xiaohongshu-redian"
 }
