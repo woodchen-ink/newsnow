@@ -140,7 +140,7 @@ export const originSources = {
     name: "卫星通讯社",
     color: "orange",
     // cloudflare pages cannot access
-    disable: "cf",
+    // disable: "cf",
     column: "world",
     home: "https://sputniknews.cn",
   },
@@ -303,6 +303,24 @@ export const originSources = {
         interval: Time.Common,
         home: "https://linux.do/hot",
       },
+    },
+  },
+  "q58": {
+    name: "Q58论坛",
+    column: "tech",
+    color: "slate",
+    home: "https://www.q58.club/",
+    sub: {
+      latest: {
+        title: "最新",
+        home: "https://www.q58.club/latest",
+      },
+      // hot: {
+      //   title: "今日最热",
+      //   type: "hottest",
+      //   interval: Time.Common,
+      //   home: "https://www.q58.club/hot",
+      // },
     },
   },
 } as const satisfies Record<string, OriginSource>

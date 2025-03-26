@@ -87,6 +87,25 @@
     "interval": 1800000,
     "title": "最热文章"
   },
+  "36kr": {
+    "redirect": "36kr-quick",
+    "name": "36氪",
+    "type": "realtime",
+    "column": "tech",
+    "home": "https://36kr.com",
+    "color": "blue",
+    "interval": 600000,
+    "title": "快讯"
+  },
+  "36kr-quick": {
+    "name": "36氪",
+    "type": "realtime",
+    "column": "tech",
+    "home": "https://36kr.com",
+    "color": "blue",
+    "interval": 600000,
+    "title": "快讯"
+  },
   "douyin": {
     "name": "抖音",
     "type": "hottest",
@@ -128,6 +147,13 @@
     "home": "https://www.thepaper.cn",
     "color": "gray",
     "interval": 1800000
+  },
+  "sputniknewscn": {
+    "name": "卫星通讯社",
+    "column": "world",
+    "home": "https://sputniknews.cn",
+    "color": "orange",
+    "interval": 600000
   },
   "cankaoxiaoxi": {
     "name": "参考消息",
@@ -311,5 +337,22 @@
     "home": "https://www.baidu.com",
     "color": "blue",
     "interval": 600000
+  },
+  "q58": {
+    "redirect": "q58-latest",
+    "name": "Q58论坛",
+    "column": "tech",
+    "home": "https://www.q58.club/latest",
+    "color": "slate",
+    "interval": 600000,
+    "title": "最新"
+  },
+  "q58-latest": {
+    "name": "Q58论坛",
+    "column": "tech",
+    "home": "https://www.q58.club/latest",
+    "color": "slate",
+    "interval": 600000,
+    "title": "最新"
   }
 }
