@@ -17,6 +17,12 @@ jobs:
         with:
           node-version: lts/*
 
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate sources
+        run: npx tsx ./scripts/source.ts
+
       - name: Refresh
         env:
           JWT_TOKEN: ${{ secrets.JWT_TOKEN }}
