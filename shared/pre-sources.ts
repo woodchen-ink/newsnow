@@ -13,6 +13,36 @@ const Time = {
 }
 
 export const originSources = {
+  "czlexpress": {
+    name: "CZL国际快递",
+    color: "blue",
+    column: "finance",
+    home: "https://exp.czl.net",
+    sub: {
+      latest: {
+        title: "最新文章",
+        interval: Time.Common,
+      },
+    },
+  },
+  "q58": {
+    name: "Q58论坛",
+    column: "tech",
+    color: "slate",
+    home: "https://www.q58.club/",
+    sub: {
+      latest: {
+        title: "最新",
+        home: "https://www.q58.club/latest",
+      },
+      // hot: {
+      //   title: "今日最热",
+      //   type: "hottest",
+      //   interval: Time.Common,
+      //   home: "https://www.q58.club/hot",
+      // },
+    },
+  },
   "v2ex": {
     name: "V2EX",
     color: "slate",
@@ -75,6 +105,30 @@ export const originSources = {
       hot: {
         title: "最热文章",
         type: "hottest",
+        interval: Time.Common,
+      },
+    },
+  },
+  "meituantech": {
+    name: "美团技术团队",
+    color: "blue",
+    column: "tech",
+    home: "https://tech.meituan.com",
+    sub: {
+      latest: {
+        title: "最新文章",
+        interval: Time.Common,
+      },
+    },
+  },
+  "sspai": {
+    name: "少数派",
+    color: "blue",
+    column: "tech",
+    home: "https://sspai.com",
+    sub: {
+      latest: {
+        title: "最新文章",
         interval: Time.Common,
       },
     },
@@ -303,24 +357,6 @@ export const originSources = {
         interval: Time.Common,
         home: "https://linux.do/hot",
       },
-    },
-  },
-  "q58": {
-    name: "Q58论坛",
-    column: "tech",
-    color: "slate",
-    home: "https://www.q58.club/",
-    sub: {
-      latest: {
-        title: "最新",
-        home: "https://www.q58.club/latest",
-      },
-      // hot: {
-      //   title: "今日最热",
-      //   type: "hottest",
-      //   interval: Time.Common,
-      //   home: "https://www.q58.club/hot",
-      // },
     },
   },
 } as const satisfies Record<string, OriginSource>
