@@ -19,11 +19,11 @@ export function Menu() {
     <span className="relative" onMouseEnter={() => show(true)} onMouseLeave={() => show(false)}>
       <span className="flex items-center scale-90">
         {
-          enableLogin && loggedIn && userInfo.avatar
+          enableLogin && loggedIn && userInfo && userInfo.avatar
             ? (
                 <button
                   type="button"
-                  className="h-6 w-6 rounded-full bg-cover"
+                  className="h-6 w-6 rounded-full bg-cover bg-center border-none overflow-hidden"
                   style={
                     {
                       backgroundImage: `url(${userInfo.avatar})`,

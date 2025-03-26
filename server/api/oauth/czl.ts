@@ -83,7 +83,16 @@ export default defineEventHandler(async (event) => {
         throw new Error(`HTTP error! Status: ${userInfoResponse.status}`)
       }
 
-      const userInfo = await userInfoResponse.json()
+      interface CZLUserInfo {
+        id: string
+        email: string
+        avatar?: string
+        avatar_url?: string
+        username?: string
+        name?: string
+      }
+
+      const userInfo = await userInfoResponse.json() as CZLUserInfo
 
       if (!userInfo || !userInfo.id) {
         console.error("用户信息响应无效:", userInfo)
@@ -111,8 +120,8 @@ export default defineEventHandler(async (event) => {
         login: "czl",
         jwt: jwtToken,
         user: JSON.stringify({
-          avatar: userInfo.avatar_url,
-          name: userInfo.name,
+          avatar: userInfo.avatar || userInfo.avatar_url,
+          name: userInfo.username || userInfo.name,
         }),
       })
       return sendRedirect(event, `/?${params.toString()}`)
@@ -152,7 +161,7 @@ export default defineEventHandler(async (event) => {
             "Authorization": `Bearer ${tokenResponse.access_token}`,
             "User-Agent": "NewsNow App",
           },
-        })
+        }) as CZLUserInfo
 
         if (!userInfo || !userInfo.id) {
           console.error("用户信息响应无效:", userInfo)
@@ -180,8 +189,8 @@ export default defineEventHandler(async (event) => {
           login: "czl",
           jwt: jwtToken,
           user: JSON.stringify({
-            avatar: userInfo.avatar_url,
-            name: userInfo.name,
+            avatar: userInfo.avatar || userInfo.avatar_url,
+            name: userInfo.username || userInfo.name,
           }),
         })
         return sendRedirect(event, `/?${params.toString()}`)
