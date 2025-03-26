@@ -27,6 +27,9 @@ export const columns = {
   all: {
     zh: "全部",
   },
+  default: {
+    zh: "默认",
+  },
 } as const
 
 export const fixedColumnIds = ["focus", "all", "hottest", "realtime", "tech", "finance", "china", "world"] as const satisfies Partial<ColumnID>[]
@@ -63,6 +66,16 @@ export const metadata: Metadata = typeSafeObjectFromEntries(typeSafeObjectEntrie
       return [k, {
         name: v.zh,
         sources: typeSafeObjectEntries(sources).filter(([, v]) => v.column === "finance" && !v.redirect).map(([k]) => k),
+      }]
+    case "china":
+      return [k, {
+        name: v.zh,
+        sources: typeSafeObjectEntries(sources).filter(([, v]) => v.column === "china" && !v.redirect).map(([k]) => k),
+      }]
+    case "world":
+      return [k, {
+        name: v.zh,
+        sources: typeSafeObjectEntries(sources).filter(([, v]) => v.column === "world" && !v.redirect).map(([k]) => k),
       }]
     default:
       return [k, {
