@@ -16,7 +16,7 @@ export const originSources = {
   "czlexpress": {
     name: "CZL国际快递",
     color: "blue",
-    column: "finance",
+    column: "world",
     home: "https://exp.czl.net",
     sub: {
       latest: {
@@ -35,12 +35,6 @@ export const originSources = {
         title: "最新",
         home: "https://www.q58.club/latest",
       },
-      // hot: {
-      //   title: "今日最热",
-      //   type: "hottest",
-      //   interval: Time.Common,
-      //   home: "https://www.q58.club/hot",
-      // },
     },
   },
   "v2ex": {
