@@ -1,4 +1,6 @@
 {
+  "czlexpress-latest": "CZLguojikuaidi-zuixinwenzhang",
+  "q58-latest": "Q58luntan-zuixin",
   "v2ex-share": "V2EX-zuixinfenxiang",
   "zhihu": "zhihu",
   "weibo": "weibo-shishiresou",
@@ -7,10 +9,8 @@
   "wallstreetcn-quick": "huaerjiejianwen-shishikuaixun",
   "wallstreetcn-news": "huaerjiejianwen-zuixinzixun",
   "wallstreetcn-hot": "huaerjiejianwen-zuirewenzhang",
-  "czlexpress-latest": "CZLguojikuaidi-zuixinwenzhang",
   "meituantech-latest": "meituanjishutuandui-zuixinwenzhang",
   "sspai-latest": "shaoshupai-zuixinwenzhang",
-  "36kr-quick": "36ke-kuaixun",
   "douyin": "douyin",
   "tieba": "baidutieba-reyi",
   "toutiao": "jinritoutiao",
@@ -30,11 +30,7 @@
   "producthunt": "Product Hunt",
   "github-trending-today": "Github-Today",
   "bilibili-hot-search": "bilibili-resou",
-  "kuaishou": "kuaishou",
   "kaopu": "kaopuxinwen",
   "jin10": "jinshishuju",
-  "baidu": "baiduresou",
-  "linuxdo-latest": "LINUX DO-zuixin",
-  "linuxdo-hot": "LINUX DO-jinrizuire",
-  "q58-latest": "Q58luntan-zuixin"
+  "baidu": "baiduresou"
 }

@@ -1,4 +1,38 @@
 {
+  "czlexpress": {
+    "redirect": "czlexpress-latest",
+    "name": "CZL国际快递",
+    "column": "finance",
+    "home": "https://exp.czl.net",
+    "color": "blue",
+    "interval": 1800000,
+    "title": "最新文章"
+  },
+  "czlexpress-latest": {
+    "name": "CZL国际快递",
+    "column": "finance",
+    "home": "https://exp.czl.net",
+    "color": "blue",
+    "interval": 1800000,
+    "title": "最新文章"
+  },
+  "q58": {
+    "redirect": "q58-latest",
+    "name": "Q58论坛",
+    "column": "tech",
+    "home": "https://www.q58.club/latest",
+    "color": "slate",
+    "interval": 600000,
+    "title": "最新"
+  },
+  "q58-latest": {
+    "name": "Q58论坛",
+    "column": "tech",
+    "home": "https://www.q58.club/latest",
+    "color": "slate",
+    "interval": 600000,
+    "title": "最新"
+  },
   "v2ex": {
     "redirect": "v2ex-share",
     "name": "V2EX",
@@ -87,23 +121,6 @@
     "interval": 1800000,
     "title": "最热文章"
   },
-  "czlexpress": {
-    "redirect": "czlexpress-latest",
-    "name": "CZL国际快递",
-    "column": "finance",
-    "home": "https://exp.czl.net",
-    "color": "blue",
-    "interval": 1800000,
-    "title": "最新文章"
-  },
-  "czlexpress-latest": {
-    "name": "CZL国际快递",
-    "column": "finance",
-    "home": "https://exp.czl.net",
-    "color": "blue",
-    "interval": 1800000,
-    "title": "最新文章"
-  },
   "meituantech": {
     "redirect": "meituantech-latest",
     "name": "美团技术团队",
@@ -137,27 +154,6 @@
     "color": "blue",
     "interval": 1800000,
     "title": "最新文章"
-  },
-  "36kr": {
-    "redirect": "36kr-quick",
-    "name": "36氪",
-    "type": "realtime",
-    "disable": "cf",
-    "column": "tech",
-    "home": "https://36kr.com",
-    "color": "blue",
-    "interval": 600000,
-    "title": "快讯"
-  },
-  "36kr-quick": {
-    "name": "36氪",
-    "type": "realtime",
-    "disable": "cf",
-    "column": "tech",
-    "home": "https://36kr.com",
-    "color": "blue",
-    "interval": 600000,
-    "title": "快讯"
   },
   "douyin": {
     "name": "抖音",
@@ -367,15 +363,6 @@
     "interval": 600000,
     "title": "热搜"
   },
-  "kuaishou": {
-    "name": "快手",
-    "type": "hottest",
-    "disable": "cf",
-    "column": "china",
-    "home": "https://www.kuaishou.com",
-    "color": "orange",
-    "interval": 600000
-  },
   "kaopu": {
     "name": "靠谱新闻",
     "desc": "不一定靠谱，多看多思考",
@@ -399,51 +386,5 @@
     "home": "https://www.baidu.com",
     "color": "blue",
     "interval": 600000
-  },
-  "linuxdo": {
-    "redirect": "linuxdo-latest",
-    "name": "LINUX DO",
-    "disable": "cf",
-    "column": "tech",
-    "home": "https://linux.do/latest",
-    "color": "slate",
-    "interval": 600000,
-    "title": "最新"
-  },
-  "linuxdo-latest": {
-    "name": "LINUX DO",
-    "disable": "cf",
-    "column": "tech",
-    "home": "https://linux.do/latest",
-    "color": "slate",
-    "interval": 600000,
-    "title": "最新"
-  },
-  "linuxdo-hot": {
-    "name": "LINUX DO",
-    "type": "hottest",
-    "disable": "cf",
-    "column": "tech",
-    "home": "https://linux.do/hot",
-    "color": "slate",
-    "interval": 1800000,
-    "title": "今日最热"
-  },
-  "q58": {
-    "redirect": "q58-latest",
-    "name": "Q58论坛",
-    "column": "tech",
-    "home": "https://www.q58.club/latest",
-    "color": "slate",
-    "interval": 600000,
-    "title": "最新"
-  },
-  "q58-latest": {
-    "name": "Q58论坛",
-    "column": "tech",
-    "home": "https://www.q58.club/latest",
-    "color": "slate",
-    "interval": 600000,
-    "title": "最新"
   }
 }
