@@ -87,25 +87,6 @@
     "interval": 1800000,
     "title": "最热文章"
   },
-  "36kr": {
-    "redirect": "36kr-quick",
-    "name": "36氪",
-    "type": "realtime",
-    "column": "tech",
-    "home": "https://36kr.com",
-    "color": "blue",
-    "interval": 600000,
-    "title": "快讯"
-  },
-  "36kr-quick": {
-    "name": "36氪",
-    "type": "realtime",
-    "column": "tech",
-    "home": "https://36kr.com",
-    "color": "blue",
-    "interval": 600000,
-    "title": "快讯"
-  },
   "douyin": {
     "name": "抖音",
     "type": "hottest",
