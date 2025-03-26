@@ -12,5 +12,3 @@ dev-dist
 *.tsbuildinfo
 wrangler.toml
 imports.app.d.ts
-shared/pinyin.json
-shared/sources.json
