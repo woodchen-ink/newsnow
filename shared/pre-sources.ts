@@ -334,7 +334,7 @@ export const originSources = {
     type: "hottest",
     home: "https://www.baidu.com",
   },
-  "xiaohongshu_sf": {
+  "xiaohongshu": {
     name: "小红书",
     column: "china",
     color: "red",
