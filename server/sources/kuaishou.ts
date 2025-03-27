@@ -26,7 +26,7 @@ interface HotRankData {
 
 export default defineSource(async () => {
   // 获取快手首页HTML
-  const html = await myFetch("https://i-cf.czl.net/mirror/https://www.kuaishou.com/?isHome=1")
+  const html = await myFetch("https://dl-zone-39m5dfgbs2ik-1302917093.eo-edgefunctions.com/https://www.kuaishou.com/?isHome=1")
   // 提取window.__APOLLO_STATE__中的数据
   const matches = (html as string).match(/window\.__APOLLO_STATE__\s*=\s*(\{.+?\});/)
   if (!matches) {

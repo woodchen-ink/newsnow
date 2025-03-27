@@ -18,7 +18,7 @@ interface Res {
 
 const share = defineSource(async () => {
   const res = await Promise.all(["create", "ideas", "programmer", "share"]
-    .map(k => myFetch(`https://i-cf.czl.net/mirror/https://www.v2ex.com/feed/${k}.json`) as Promise<Res>))
+    .map(k => myFetch(`https://mirror.20200511.xyz/https://www.v2ex.com/feed/${k}.json`) as Promise<Res>))
   return res.map(k => k.items).flat().map(k => ({
     id: k.id,
     title: k.title,

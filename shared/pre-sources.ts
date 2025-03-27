@@ -132,7 +132,7 @@ export const originSources = {
     type: "realtime",
     color: "blue",
     // cloudflare pages cannot access
-    disable: "cf",
+    // disable: "cf",
     home: "https://36kr.com",
     column: "tech",
     sub: {
@@ -360,7 +360,7 @@ export const originSources = {
     column: "tech",
     color: "slate",
     home: "https://linux.do/",
-    disable: "cf",
+    disable: true,
     sub: {
       latest: {
         title: "最新",

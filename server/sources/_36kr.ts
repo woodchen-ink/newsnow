@@ -2,7 +2,8 @@ import type { NewsItem } from "@shared/types"
 import { load } from "cheerio"
 
 const quick = defineSource(async () => {
-  const baseURL = "https://www.36kr.com"
+  // const baseURL = "https://www.36kr.com"
+  const baseURL = "https://dl-zone-39m5dfgbs2ik-1302917093.eo-edgefunctions.com"
   const url = `${baseURL}/newsflashes`
   const response = await myFetch(url) as any
   const $ = load(response)
