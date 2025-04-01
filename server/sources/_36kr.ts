@@ -2,8 +2,10 @@ import type { NewsItem } from "@shared/types"
 import { load } from "cheerio"
 
 const quick = defineSource(async () => {
-  // const baseURL = "https://www.36kr.com"
+  // 用于数据获取的代理URL
   const baseURL = "https://dl-zone-39m5dfgbs2ik-1302917093.eo-edgefunctions.com"
+  // 原始36kr网站URL，用于生成链接
+  const originalBaseURL = "https://www.36kr.com"
   const url = `${baseURL}/newsflashes`
   const response = await myFetch(url) as any
   const $ = load(response)
@@ -17,7 +19,7 @@ const quick = defineSource(async () => {
     const relativeDate = $el.find(".time").text()
     if (url && title && relativeDate) {
       news.push({
-        url: `${baseURL}${url}`,
+        url: `${originalBaseURL}${url}`,
         title,
         id: url,
         extra: {
