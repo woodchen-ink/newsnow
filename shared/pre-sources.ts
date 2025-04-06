@@ -339,8 +339,6 @@ export const originSources = {
     type: "hottest",
     column: "china",
     color: "orange",
-    // cloudflare pages cannot access
-    // disable: "cf",
     home: "https://www.kuaishou.com",
   },
   "kaopu": {
@@ -409,7 +407,7 @@ export const originSources = {
     name: "果核剥壳",
     column: "china",
     color: "yellow",
-    disable: "cf",
+    disable: true,
     home: "https://www.ghxi.com/",
   },
   "smzdm": {

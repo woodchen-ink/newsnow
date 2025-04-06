@@ -410,24 +410,6 @@
     "interval": 600000,
     "title": "热搜"
   },
-  "bilibili-hot-video": {
-    "name": "哔哩哔哩",
-    "type": "hottest",
-    "column": "china",
-    "home": "https://www.bilibili.com",
-    "color": "blue",
-    "interval": 600000,
-    "title": "热门视频"
-  },
-  "bilibili-ranking": {
-    "name": "哔哩哔哩",
-    "type": "hottest",
-    "column": "china",
-    "home": "https://www.bilibili.com",
-    "color": "blue",
-    "interval": 1800000,
-    "title": "排行榜"
-  },
   "kuaishou": {
     "name": "快手",
     "type": "hottest",
@@ -486,5 +468,21 @@
     "color": "red",
     "interval": 120000,
     "title": "热点"
+  },
+  "smzdm": {
+    "name": "什么值得买",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://www.smzdm.com",
+    "color": "red",
+    "interval": 600000
+  },
+  "nowcoder": {
+    "name": "牛客",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://www.nowcoder.com",
+    "color": "blue",
+    "interval": 600000
   }
 }
