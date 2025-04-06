@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 function ThemeToggle() {
   const { isDark, toggleDark } = useDark()
   return (
-    <li onClick={toggleDark}>
+    <li onClick={toggleDark} className="cursor-pointer [&_*]:cursor-pointer transition-all">
       <span className={$("inline-block", isDark ? "i-ph-moon-stars-duotone" : "i-ph-sun-dim-duotone")} />
       <span>
         {isDark ? "浅色模式" : "深色模式"}
@@ -26,7 +26,7 @@ export function Menu() {
                   className="h-6 w-6 rounded-full bg-cover bg-center border-none overflow-hidden"
                   style={
                     {
-                      backgroundImage: `url(${userInfo.avatar})`,
+                      backgroundImage: `url(${userInfo.avatar}&s=24)`,
                     }
                   }
                 >
