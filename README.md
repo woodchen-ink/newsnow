@@ -1,8 +1,6 @@
 # NewsNow
 
-![](screenshots/preview-1.png)
-
-![](screenshots/preview-2.png)
+![](/public/og-image.png)
 
 English | [简体中文](README.zh-CN.md) | [日本語](README.ja-JP.md)
 
@@ -18,23 +16,50 @@ English | [简体中文](README.zh-CN.md) | [日本語](README.ja-JP.md)
 - GitHub OAuth login with data synchronization
 - 30-minute default cache duration (logged-in users can force refresh)
 - Adaptive scraping interval (minimum 2 minutes) based on source update frequency to optimize resource usage and prevent IP bans
+- support MCP server
+
+```json
+{
+  "mcpServers": {
+    "newsnow": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "newsnow-mcp-server"
+      ],
+      "env": {
+        "BASE_URL": "https://newsnow.busiyi.world"
+      }
+    }
+  }
+}
+```
+You can change the `BASE_URL` to your own domain.
 
 ## Deployment
 
-If login and caching are not required, you can directly deploy to platforms like Cloudflare Pages or Vercel. Just fork the repository and import it into the respective platform.
+### Basic Deployment
 
-For Cloudflare Pages, you need to set the build command to `pnpm run build` and the build output directory to `dist/output/public`.
+For deployments without login and caching:
 
-The login now supports two methods: CZL Connect and Github OAuth:
+1. Fork this repository
+2. Import to platforms like Cloudflare Page or Vercel
 
-### CZL Connect Login (Recommended)
-Apply for an application on the CZL Connect platform, set the callback URL to `https://your-domain.com/api/oauth/czl`.
-After obtaining the Client ID and Client Secret, fill them in the environment variables.
+### Cloudflare Page Configuration
 
-### Github OAuth Login (Optional)
-Simply [create a Github App](https://github.com/settings/applications/new) without any permission requests. Set the Callback URL to `https://your-domain.com/api/oauth/github`.
+- Build command: `pnpm run build`
+- Output directory: `dist/output/public`
 
-After creating the app, you will get a Client ID and Client Secret. Different platforms have different places to set environment variables; refer to the `example.env.server` file. If running locally, rename it to `.env.server` and add the necessary values.
+### GitHub OAuth Setup
+
+1. [Create a GitHub App](https://github.com/settings/applications/new)
+2. No special permissions required
+3. Set callback URL to: `https://your-domain.com/api/oauth/github` (replace `your-domain` with your actual domain)
+4. Obtain Client ID and Client Secret
+
+### Environment Variables
+
+Refer to `example.env.server`. For local development, rename it to `.env.server` and configure:
 
 ```env
 # CZL Connect OAuth (Recommended)

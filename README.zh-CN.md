@@ -2,35 +2,61 @@
 
 <a href="https://hellogithub.com/repository/c2978695e74a423189e9ca2543ab3b36" target="_blank"><img src="https://api.hellogithub.com/v1/widgets/recommend.svg?rid=c2978695e74a423189e9ca2543ab3b36&claim_uid=SMJiFwlsKCkWf89&theme=small" alt="Featured｜HelloGitHub" /></a>
 
-![](screenshots/preview-1.png)
-
-![](screenshots/preview-2.png)
+![](/public/og-image.png)
 
 [English](./README.md) | 简体中文 | [日本語](README.ja-JP.md)
 
 ***优雅地阅读实时热门新闻***
 
-## 特性
-- 优雅的设计，优雅的阅读体验，时刻关注最新最热的新闻。
-- 支持 Github 登录，支持数据同步。
-- 默认 30 分钟缓存，登录用户可以强制拉取最新数据。但也会根据内容源的更新间隔设置不同的爬虫间隔时间（最快两分钟），节约资源的同时避免频繁爬取而导致 IP 封禁。
+> [!NOTE]
+> 当前版本为 DEMO，仅支持中文。正式版将提供更好的定制化功能和英文内容支持。
+>
 
-## 部署
+## 功能特性
+- 优雅的阅读界面设计，实时获取最新热点新闻
+- 支持 GitHub 登录及数据同步
+- 默认缓存时长为 30 分钟，登录用户可强制刷新获取最新数据
+- 根据内容源更新频率动态调整抓取间隔（最快每 2 分钟），避免频繁抓取导致 IP 被封禁
+- 支持 MCP server
 
-如果不需要登录，缓存，可以直接部署到 Cloudflare Pages，Vercel 等。Fork 之后在对应平台上导入即可。
+```json
+{
+  "mcpServers": {
+    "newsnow": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "newsnow-mcp-server"
+      ],
+      "env": {
+        "BASE_URL": "https://newsnow.busiyi.world"
+      }
+    }
+  }
+}
+```
 
-Cloudflare Pages 需要填入构建命令 `pnpm run build`, 构建输出文件夹 `dist/output/public`。
+你可以将 `BASE_URL` 修改为你的域名。
 
-登录现在支持CZL Connect和Github Oauth两种方式：
+## 部署指南
 
-### CZL Connect登录（推荐）
-到CZL Connect平台申请一个应用，设置回调URL为 `https://your-domain.com/api/oauth/czl`。
-获取到Client ID和Client Secret后，将其填入环境变量。
+### 基础部署
+无需登录和缓存功能时，可直接部署至 Cloudflare Pages 或 Vercel：
+1. Fork 本仓库
+2. 导入至目标平台
 
-### Github Oauth登录（可选）
-只需要 [创建一个 Github App](https://github.com/settings/applications/new) 即可，不需要申请任何权限。Callback URL 为 `https://your-domain.com/api/oauth/github`。
+### Cloudflare Pages 配置
+- 构建命令：`pnpm run build`
+- 输出目录：`dist/output/public`
 
-然后就会得到 Client ID 和 Client Secret。关于环境变量，不同平台有不同的填写位置，请关注 `example.env.server` 文件。如果本地运行，需要将其重命名为 `.env.server`，然后按照要求添加。
+### GitHub OAuth 配置
+1. [创建 GitHub App](https://github.com/settings/applications/new)
+2. 无需特殊权限
+3. 回调 URL 设置为：`https://your-domain.com/api/oauth/github`（替换 your-domain 为实际域名）
+4. 获取 Client ID 和 Client Secret
+
+### 环境变量配置
+参考 `example.env.server` 文件，本地运行时重命名为 `.env.server` 并填写以下配置：
 
 ```env
 # CZL Connect OAuth (推荐)
