@@ -419,26 +419,6 @@
     "interval": 600000,
     "title": "热搜"
   },
-  "bilibili-hot-video": {
-    "name": "哔哩哔哩",
-    "type": "hottest",
-    "disable": "cf",
-    "column": "china",
-    "home": "https://www.bilibili.com",
-    "color": "blue",
-    "interval": 600000,
-    "title": "热门视频"
-  },
-  "bilibili-ranking": {
-    "name": "哔哩哔哩",
-    "type": "hottest",
-    "disable": "cf",
-    "column": "china",
-    "home": "https://www.bilibili.com",
-    "color": "blue",
-    "interval": 1800000,
-    "title": "排行榜"
-  },
   "kuaishou": {
     "name": "快手",
     "type": "hottest",
@@ -471,41 +451,32 @@
     "color": "blue",
     "interval": 600000
   },
-  "linuxdo": {
-    "redirect": "linuxdo-latest",
-    "name": "LINUX DO",
-    "disable": "cf",
-    "column": "tech",
-    "home": "https://linux.do/latest",
-    "color": "slate",
-    "interval": 600000,
-    "title": "最新"
-  },
-  "linuxdo-latest": {
-    "name": "LINUX DO",
-    "disable": "cf",
-    "column": "tech",
-    "home": "https://linux.do/latest",
-    "color": "slate",
-    "interval": 600000,
-    "title": "最新"
-  },
-  "linuxdo-hot": {
-    "name": "LINUX DO",
+  "wikipedia": {
+    "name": "维基百科热门",
     "type": "hottest",
-    "disable": "cf",
-    "column": "tech",
-    "home": "https://linux.do/hot",
-    "color": "slate",
-    "interval": 1800000,
-    "title": "今日最热"
-  },
-  "ghxi": {
-    "name": "果核剥壳",
-    "column": "china",
-    "home": "https://www.ghxi.com/",
-    "color": "yellow",
+    "column": "world",
+    "home": "https://zh.wikipedia.org",
+    "color": "blue",
     "interval": 600000
+  },
+  "xiaohongshu": {
+    "redirect": "xiaohongshu-hotlist",
+    "name": "小红书",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://www.xiaohongshu.com",
+    "color": "red",
+    "interval": 120000,
+    "title": "热点"
+  },
+  "xiaohongshu-hotlist": {
+    "name": "小红书",
+    "type": "hottest",
+    "column": "china",
+    "home": "https://www.xiaohongshu.com",
+    "color": "red",
+    "interval": 120000,
+    "title": "热点"
   },
   "smzdm": {
     "name": "什么值得买",
@@ -521,14 +492,6 @@
     "column": "china",
     "home": "https://www.nowcoder.com",
     "color": "blue",
-    "interval": 600000
-  },
-  "sspai": {
-    "name": "少数派",
-    "type": "hottest",
-    "column": "tech",
-    "home": "https://sspai.com",
-    "color": "red",
     "interval": 600000
   },
   "juejin": {

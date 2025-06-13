@@ -409,6 +409,7 @@ export const originSources = {
   "ghxi": {
     name: "果核剥壳",
     column: "china",
+    disable: true,
     color: "yellow",
     home: "https://www.ghxi.com/",
   },
