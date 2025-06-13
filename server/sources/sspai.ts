@@ -1,40 +1,21 @@
-import { XMLParser } from "fast-xml-parser"
-
-interface RSSItem {
-  title: string
-  link: string
-  pubDate: string
-  description: string
-  author: string
+interface Res {
+  data: {
+    id: number
+    title: string
+  }[]
 }
 
-interface RSSFeed {
-  rss: {
-    channel: {
-      item: RSSItem[]
-    }
-  }
-}
-
-const latest = defineSource(async () => {
-  const url = "https://sspai.com/feed"
-  const response = await fetch(url)
-  const xmlText = await response.text()
-  const parser = new XMLParser()
-  const result: RSSFeed = parser.parse(xmlText)
-
-  return result.rss.channel.item.map((item) => {
+export default defineSource(async () => {
+  const timestamp = Date.now()
+  const limit = 30
+  const url = `https://sspai.com/api/v1/article/tag/page/get?limit=${limit}&offset=0&created_at=${timestamp}&tag=%E7%83%AD%E9%97%A8%E6%96%87%E7%AB%A0&released=false`
+  const res: Res = await myFetch(url)
+  return res.data.map((k) => {
+    const url = `https://sspai.com/post/${k.id}`
     return {
-      id: item.link.split("/").pop() || "",
-      title: item.title,
-      url: item.link,
-      description: item.description.replace(/<[^>]*>/g, "").trim(),
-      author: item.author,
-      pubDate: new Date(item.pubDate).valueOf(),
+      id: k.id,
+      title: k.title,
+      url,
     }
   })
-})
-
-export default defineSource({
-  "sspai-latest": latest,
 })

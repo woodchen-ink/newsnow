@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
   if (!url.pathname.startsWith("/api")) return
   if (["JWT_SECRET", "CZL_CLIENT_ID", "CZL_CLIENT_SECRET"].find(k => !process.env[k])) {
     event.context.disabledLogin = true
-    if (["/api/s", "/api/proxy", "/api/latest"].every(p => !url.pathname.startsWith(p)))
+    if (["/api/s", "/api/proxy", "/api/latest", "/api/mcp"].every(p => !url.pathname.startsWith(p)))
       throw createError({ statusCode: 506, message: "Server not configured, disable login" })
   } else {
     if (["/api/s", "/api/me"].find(p => url.pathname.startsWith(p))) {
