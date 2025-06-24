@@ -16,19 +16,19 @@
     "interval": 1800000,
     "title": "最新文章"
   },
-  "q58": {
-    "redirect": "q58-latest",
-    "name": "Q58论坛",
+  "sunai": {
+    "redirect": "sunai-latest",
+    "name": "SunAI论坛",
     "column": "tech",
-    "home": "https://www.q58.club/latest",
+    "home": "https://www.sunai.net/latest",
     "color": "slate",
     "interval": 600000,
     "title": "最新"
   },
-  "q58-latest": {
-    "name": "Q58论坛",
+  "sunai-latest": {
+    "name": "SunAI论坛",
     "column": "tech",
-    "home": "https://www.q58.club/latest",
+    "home": "https://www.sunai.net/latest",
     "color": "slate",
     "interval": 600000,
     "title": "最新"

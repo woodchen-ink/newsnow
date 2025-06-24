@@ -25,15 +25,15 @@ export const originSources = {
       },
     },
   },
-  "q58": {
-    name: "Q58论坛",
+  "sunai": {
+    name: "SunAI论坛",
     column: "tech",
     color: "slate",
-    home: "https://www.q58.club/",
+    home: "https://www.sunai.net/",
     sub: {
       latest: {
         title: "最新",
-        home: "https://www.q58.club/latest",
+        home: "https://www.sunai.net/latest",
       },
     },
   },

@@ -70,7 +70,7 @@ export function Menu() {
                 </li>
               )}
               <ThemeToggle />
-              <li onClick={() => window.open("https://www.q58.club/t/topic/386", "_blank", "noopener,noreferrer")}>
+              <li onClick={() => window.open("https://www.sunai.net/t/topic/386", "_blank", "noopener,noreferrer")}>
                 <span className="i-ph:chat-circle-dots-duotone inline-block" />
                 <span>反馈</span>
               </li>

@@ -32,30 +32,30 @@ interface Res {
 }
 
 // const hot = defineSource(async () => {
-//   const res = await myFetch<Res>("https://www.q58.club/top/daily.json")
+//   const res = await myFetch<Res>("https://www.sunai.net/top/daily.json")
 //   return res.topic_list.topics
 //     .filter(k => k.visible && !k.archived && !k.pinned)
 //     .map(k => ({
 //       id: k.id,
 //       title: k.title,
-//       url: `https://www.q58.club/t/topic/${k.id}`,
+//       url: `https://www.sunai.net/t/topic/${k.id}`,
 //     }))
 // })
 
 const latest = defineSource(async () => {
-  const res = await myFetch<Res>("https://www.q58.club/latest.json?order=created")
+  const res = await myFetch<Res>("https://www.sunai.net/latest.json?order=created")
   return res.topic_list.topics
     .filter(k => k.visible && !k.archived && !k.pinned)
     .map(k => ({
       id: k.id,
       title: k.title,
       pubDate: new Date(k.created_at).valueOf(),
-      url: `https://www.q58.club/t/topic/${k.id}`,
+      url: `https://www.sunai.net/t/topic/${k.id}`,
     }))
 })
 
 export default defineSource({
-  "q58": latest,
-  "q58-latest": latest,
-  // "q58-hot": hot,
+  "sunai": latest,
+  "sunai-latest": latest,
+  // "sunai-hot": hot,
 })
