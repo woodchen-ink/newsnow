@@ -17,7 +17,7 @@ interface RSSFeed {
 }
 
 const latest = defineSource(async () => {
-  const url = "https://exp.czl.net/artical/feed"
+  const url = "https://exp.czl.net/feed"
   const response = await fetch(url)
   const xmlText = await response.text()
   const parser = new XMLParser()
