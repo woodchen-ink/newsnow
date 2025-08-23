@@ -13,3 +13,5 @@ dev-dist
 wrangler.toml
 imports.app.d.ts
 package-lock.json
+CLAUDE.md
+.claude/

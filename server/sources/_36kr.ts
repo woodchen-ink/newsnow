@@ -3,7 +3,7 @@ import { load } from "cheerio"
 
 const quick = defineSource(async () => {
   // 用于数据获取的代理URL
-  const baseURL = "https://dl-zone-3difuekf814s-1302917093.eo-edgefunctions.com"
+  const baseURL = "https://p0.czl.net"
   // 原始36kr网站URL，用于生成链接
   const originalBaseURL = "https://www.36kr.com"
   const url = `${baseURL}/newsflashes`

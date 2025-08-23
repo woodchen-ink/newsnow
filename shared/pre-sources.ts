@@ -310,6 +310,22 @@ export const originSources = {
         title: "Today",
         type: "hottest",
       },
+      "go": {
+        title: "Go",
+        type: "hottest",
+      },
+      "rust": {
+        title: "Rust",
+        type: "hottest",
+      },
+      "typescript": {
+        title: "TypeScript",
+        type: "hottest",
+      },
+      "php": {
+        title: "PHP",
+        type: "hottest",
+      },
     },
   },
   "bilibili": {

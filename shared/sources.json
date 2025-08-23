@@ -400,6 +400,42 @@
     "interval": 600000,
     "title": "Today"
   },
+  "github-go": {
+    "name": "Github",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://github.com/",
+    "color": "gray",
+    "interval": 600000,
+    "title": "Go"
+  },
+  "github-rust": {
+    "name": "Github",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://github.com/",
+    "color": "gray",
+    "interval": 600000,
+    "title": "Rust"
+  },
+  "github-typescript": {
+    "name": "Github",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://github.com/",
+    "color": "gray",
+    "interval": 600000,
+    "title": "TypeScript"
+  },
+  "github-php": {
+    "name": "Github",
+    "type": "hottest",
+    "column": "tech",
+    "home": "https://github.com/",
+    "color": "gray",
+    "interval": 600000,
+    "title": "PHP"
+  },
   "bilibili": {
     "redirect": "bilibili-hot-search",
     "name": "哔哩哔哩",
