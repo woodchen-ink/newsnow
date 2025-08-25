@@ -422,19 +422,13 @@ export const originSources = {
       },
     },
   },
-  "ghxi": {
-    name: "果核剥壳",
-    column: "china",
-    disable: true,
-    color: "yellow",
-    home: "https://www.ghxi.com/",
-  },
   "smzdm": {
     name: "什么值得买",
     column: "china",
     color: "red",
     type: "hottest",
     home: "https://www.smzdm.com",
+    disable: true,
   },
   "nowcoder": {
     name: "牛客",
