@@ -81,6 +81,18 @@ export const originSources = {
     title: "今日最热",
     home: "https://coolapk.com",
   },
+  "mktnews": {
+    name: "MKTNews",
+    column: "finance",
+    home: "https://mktnews.net",
+    color: "indigo",
+    interval: Time.Realtime,
+    sub: {
+      flash: {
+        title: "快讯",
+      },
+    },
+  },
   "wallstreetcn": {
     name: "华尔街见闻",
     color: "blue",
@@ -90,14 +102,14 @@ export const originSources = {
       quick: {
         type: "realtime",
         interval: Time.Fast,
-        title: "实时快讯",
+        title: "快讯",
       },
       news: {
-        title: "最新资讯",
+        title: "最新",
         interval: Time.Common,
       },
       hot: {
-        title: "最热文章",
+        title: "最热",
         type: "hottest",
         interval: Time.Common,
       },
@@ -131,13 +143,15 @@ export const originSources = {
     name: "36氪",
     type: "realtime",
     color: "blue",
-    // cloudflare pages cannot access
-    // disable: "cf",
     home: "https://36kr.com",
     column: "tech",
     sub: {
       quick: {
         title: "快讯",
+      },
+      renqi: {
+        type: "hottest",
+        title: "人气榜",
       },
     },
   },
@@ -209,7 +223,7 @@ export const originSources = {
     home: "https://bbs.pcbeta.com",
     sub: {
       windows11: {
-        title: "Windows 11",
+        title: "Win11",
         type: "realtime",
         interval: Time.Fast,
       },
@@ -217,6 +231,7 @@ export const originSources = {
         title: "Windows 资源",
         type: "realtime",
         interval: Time.Fast,
+        disable: true,
       },
     },
   },
@@ -422,6 +437,13 @@ export const originSources = {
       },
     },
   },
+  "ghxi": {
+    name: "果核剥壳",
+    column: "china",
+    color: "yellow",
+    home: "https://www.ghxi.com/",
+    disable: true,
+  },
   "smzdm": {
     name: "什么值得买",
     column: "china",
@@ -471,6 +493,74 @@ export const originSources = {
       },
     },
   },
+  "douban": {
+    name: "豆瓣",
+    column: "china",
+    title: "热门电影",
+    color: "green",
+    type: "hottest",
+    home: "https://www.douban.com",
+  },
+  "steam": {
+    name: "Steam",
+    column: "world",
+    title: "在线人数",
+    color: "blue",
+    type: "hottest",
+    home: "https://store.steampowered.com",
+  },
+  "tencent": {
+    name: "腾讯新闻",
+    column: "china",
+    color: "blue",
+    home: "https://news.qq.com",
+    sub: {
+      hot: {
+        title: "综合早报",
+        type: "hottest",
+        interval: Time.Common,
+        home: "https://news.qq.com/tag/aEWqxLtdgmQ=",
+      },
+    },
+  },
+  "freebuf": {
+    name: "Freebuf",
+    column: "china",
+    title: "网络安全",
+    color: "green",
+    type: "hottest",
+    home: "https://www.freebuf.com/",
+  },
+
+  "qqvideo": {
+    name: "腾讯视频",
+    column: "china",
+    color: "blue",
+    home: "https://v.qq.com/",
+    sub: {
+      "tv-hotsearch": {
+        title: "热搜榜",
+        type: "hottest",
+        interval: Time.Common,
+        home: "https://v.qq.com/channel/tv",
+
+      },
+    },
+  },
+  "iqiyi": {
+    name: "爱奇艺",
+    column: "china",
+    color: "green",
+    home: "https://www.iqiyi.com",
+    sub: {
+      "hot-ranklist": {
+        title: "热播榜",
+        type: "hottest",
+        interval: Time.Common,
+        home: "https://www.iqiyi.com",
+      },
+    },
+  },
 } as const satisfies Record<string, OriginSource>
 
 export function genSources() {
@@ -490,29 +580,38 @@ export function genSources() {
     if (source.sub && Object.keys(source.sub).length) {
       Object.entries(source.sub).forEach(([subId, subSource], i) => {
         if (i === 0) {
-          _.push([id, {
-            redirect: `${id}-${subId}`,
-            ...parent,
-            ...subSource,
-          }] as [any, Source])
+          _.push([
+            id,
+            {
+              redirect: `${id}-${subId}`,
+              ...parent,
+              ...subSource,
+            },
+          ] as [any, Source])
         }
-        _.push([`${id}-${subId}`, { ...parent, ...subSource }] as [any, Source])
+        _.push([`${id}-${subId}`, { ...parent, ...subSource }] as [
+          any,
+          Source,
+        ])
       })
     } else {
-      _.push([id, {
-        title: source.title,
-        ...parent,
-      }])
+      _.push([
+        id,
+        {
+          title: source.title,
+          ...parent,
+        },
+      ])
     }
   })
 
-  return typeSafeObjectFromEntries(_.filter(([_, v]) => {
-    if (v.disable === "cf" && process.env.CF_PAGES) {
-      return false
-    } else if (v.disable === true) {
-      return false
-    } else {
-      return true
-    }
-  }))
+  return typeSafeObjectFromEntries(
+    _.filter(([_, v]) => {
+      if (v.disable === "cf" && process.env.CF_PAGES) {
+        return false
+      } else {
+        return v.disable !== true
+      }
+    }),
+  )
 }
