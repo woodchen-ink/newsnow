@@ -13,5 +13,9 @@ dev-dist
 wrangler.toml
 imports.app.d.ts
 package-lock.json
+<<<<<<< HEAD
 CLAUDE.md
 .claude/
+=======
+.specstory/
+>>>>>>> 951241bf1be2b09d6e7b0ac8aa63a251ecc2e2b8
