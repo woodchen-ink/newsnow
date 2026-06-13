@@ -217,6 +217,14 @@
     "color": "red",
     "interval": 600000
   },
+  "aihot": {
+    "name": "AIHOT",
+    "type": "realtime",
+    "column": "tech",
+    "home": "https://aihot.virxact.com/all",
+    "color": "blue",
+    "interval": 300000
+  },
   "tieba": {
     "title": "热议",
     "name": "百度贴吧",
@@ -471,6 +479,26 @@
     "color": "blue",
     "interval": 600000,
     "title": "热搜"
+  },
+  "bilibili-hot-video": {
+    "name": "哔哩哔哩",
+    "type": "hottest",
+    "disable": "cf",
+    "column": "china",
+    "home": "https://www.bilibili.com",
+    "color": "blue",
+    "interval": 600000,
+    "title": "热门视频"
+  },
+  "bilibili-ranking": {
+    "name": "哔哩哔哩",
+    "type": "hottest",
+    "disable": "cf",
+    "column": "china",
+    "home": "https://www.bilibili.com",
+    "color": "blue",
+    "interval": 1800000,
+    "title": "排行榜"
   },
   "kuaishou": {
     "name": "快手",

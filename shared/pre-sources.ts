@@ -170,6 +170,14 @@ export const originSources = {
     type: "hottest",
     color: "red",
   },
+  "aihot": {
+    name: "AIHOT",
+    type: "realtime",
+    column: "tech",
+    color: "blue",
+    interval: Time.Fast,
+    home: "https://aihot.virxact.com/all",
+  },
   "tieba": {
     name: "百度贴吧",
     title: "热议",
