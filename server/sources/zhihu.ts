@@ -40,7 +40,6 @@ export default defineSource({
     const res: Res = await myFetch(url)
     return res.data
       .map((k) => {
-        const urlId = k.target.url?.match(/(\d+)$/)?.[1]
         return {
           id: k.target.link.url.match(/(\d+)$/)?.[1] ?? k.target.link.url,
           title: k.target.title_area.text,

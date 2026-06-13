@@ -1,5 +1,12 @@
 import process from "node:process"
 
+// 调试端点用的令牌响应结构 (仅诊断, 字段全部可选)
+interface CZLTokenDebugResponse {
+  access_token?: string
+  token_type?: string
+  scope?: string
+}
+
 export default defineEventHandler(async (event) => {
   try {
     // 获取请求参数
@@ -58,7 +65,7 @@ export default defineEventHandler(async (event) => {
         throw new Error(`HTTP error! Status: ${response.status}, Response: ${errorText}`)
       }
 
-      const tokenResponse = await response.json()
+      const tokenResponse = await response.json() as CZLTokenDebugResponse
 
       return {
         status: "success",

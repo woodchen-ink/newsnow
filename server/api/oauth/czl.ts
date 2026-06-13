@@ -2,6 +2,20 @@ import process from "node:process"
 import { SignJWT } from "jose"
 import { UserTable } from "#/database/user"
 
+// CZL Connect OAuth 令牌与用户信息响应结构
+interface CZLTokenResponse {
+  access_token?: string
+}
+
+interface CZLUserInfo {
+  id: string
+  email: string
+  avatar?: string
+  avatar_url?: string
+  username?: string
+  name?: string
+}
+
 export default defineEventHandler(async (event) => {
   // 添加调试信息
   console.log("CZL Connect OAuth 回调被访问")
@@ -57,7 +71,7 @@ export default defineEventHandler(async (event) => {
         throw new Error(`HTTP error! Status: ${response.status}`)
       }
 
-      const tokenResponse = await response.json()
+      const tokenResponse = await response.json() as CZLTokenResponse
 
       if (!tokenResponse || !tokenResponse.access_token) {
         console.error("访问令牌响应无效:", tokenResponse)
@@ -81,15 +95,6 @@ export default defineEventHandler(async (event) => {
 
       if (!userInfoResponse.ok) {
         throw new Error(`HTTP error! Status: ${userInfoResponse.status}`)
-      }
-
-      interface CZLUserInfo {
-        id: string
-        email: string
-        avatar?: string
-        avatar_url?: string
-        username?: string
-        name?: string
       }
 
       const userInfo = await userInfoResponse.json() as CZLUserInfo
@@ -141,7 +146,7 @@ export default defineEventHandler(async (event) => {
               "Accept": "application/json",
             },
           },
-        )
+        ) as CZLTokenResponse
 
         if (!tokenResponse || !tokenResponse.access_token) {
           console.error("访问令牌响应无效:", tokenResponse)
