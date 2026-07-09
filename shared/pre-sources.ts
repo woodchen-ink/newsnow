@@ -145,6 +145,7 @@ export const originSources = {
     color: "blue",
     home: "https://36kr.com",
     column: "tech",
+    disable: "cf",
     sub: {
       quick: {
         title: "快讯",
@@ -165,10 +166,18 @@ export const originSources = {
   "hupu": {
     name: "虎扑",
     home: "https://hupu.com",
-    column: "china",
+    column: "sports",
     title: "主干道热帖",
     type: "hottest",
     color: "red",
+  },
+  "dongqiudi": {
+    name: "懂球帝",
+    title: "头条",
+    type: "realtime",
+    column: "sports",
+    color: "green",
+    home: "https://www.dongqiudi.com",
   },
   "aihot": {
     name: "AIHOT",

@@ -1,5 +1,6 @@
 import { sources } from "./sources"
 import { typeSafeObjectEntries, typeSafeObjectFromEntries } from "./type.util"
+import { updatedSourceIds as _updatedSourceIds } from "./updated-sources"
 import type { ColumnID, HiddenColumnID, Metadata, SourceID } from "./types"
 
 export const columns = {
@@ -14,6 +15,9 @@ export const columns = {
   },
   finance: {
     zh: "财经",
+  },
+  sports: {
+    zh: "体育",
   },
   focus: {
     zh: "关注",
@@ -30,10 +34,22 @@ export const columns = {
   default: {
     zh: "默认",
   },
+  updated: {
+    zh: "更新",
+  },
 } as const
 
-export const fixedColumnIds = ["focus", "all", "hottest", "realtime", "tech", "finance", "china", "world"] as const satisfies Partial<ColumnID>[]
+const updatedSourceIds = [..._updatedSourceIds] as SourceID[]
+
+export const fixedColumnIds = ["focus", "all", "hottest", "realtime", "updated", "tech", "finance", "china", "world"] as const satisfies Partial<ColumnID>[]
 export const hiddenColumns = Object.keys(columns).filter(id => !fixedColumnIds.includes(id as any)) as HiddenColumnID[]
+
+function getSortedSourceIds(type: "hottest" | "realtime") {
+  return typeSafeObjectEntries(sources)
+    .filter(([, v]) => v.type === type && !v.redirect)
+    .map(([k]) => k)
+    .sort((m, n) => m.localeCompare(n))
+}
 
 export const metadata: Metadata = typeSafeObjectFromEntries(typeSafeObjectEntries(columns).map(([k, v]) => {
   switch (k) {
@@ -42,45 +58,33 @@ export const metadata: Metadata = typeSafeObjectFromEntries(typeSafeObjectEntrie
         name: v.zh,
         sources: [] as SourceID[],
       }]
-    case "all":
-      return [k, {
-        name: v.zh,
-        sources: typeSafeObjectEntries(sources).filter(([, v]) => !v.redirect).map(([k]) => k),
-      }]
     case "hottest":
       return [k, {
         name: v.zh,
-        sources: typeSafeObjectEntries(sources).filter(([, v]) => v.type === "hottest" && !v.redirect).map(([k]) => k),
+        sources: getSortedSourceIds("hottest"),
       }]
     case "realtime":
       return [k, {
         name: v.zh,
-        sources: typeSafeObjectEntries(sources).filter(([, v]) => v.type === "realtime" && !v.redirect).map(([k]) => k),
+        sources: getSortedSourceIds("realtime"),
       }]
-    case "tech":
+    case "updated":
       return [k, {
         name: v.zh,
-        sources: typeSafeObjectEntries(sources).filter(([, v]) => v.column === "tech" && !v.redirect).map(([k]) => k),
+        sources: updatedSourceIds.filter(id => sources[id] && !sources[id].redirect),
       }]
-    case "finance":
-      return [k, {
-        name: v.zh,
-        sources: typeSafeObjectEntries(sources).filter(([, v]) => v.column === "finance" && !v.redirect).map(([k]) => k),
-      }]
-    case "china":
-      return [k, {
-        name: v.zh,
-        sources: typeSafeObjectEntries(sources).filter(([, v]) => v.column === "china" && !v.redirect).map(([k]) => k),
-      }]
-    case "world":
-      return [k, {
-        name: v.zh,
-        sources: typeSafeObjectEntries(sources).filter(([, v]) => v.column === "world" && !v.redirect).map(([k]) => k),
-      }]
-    default:
+    // “全部”与“默认”均展示所有非跳转源, 与分类列区分
+    case "all":
+    case "default":
       return [k, {
         name: v.zh,
         sources: typeSafeObjectEntries(sources).filter(([, v]) => !v.redirect).map(([k]) => k),
+      }]
+    // china/world/tech/finance/sports 等分类列按 source.column 归属匹配
+    default:
+      return [k, {
+        name: v.zh,
+        sources: typeSafeObjectEntries(sources).filter(([, v]) => v.column === k && !v.redirect).map(([k]) => k),
       }]
   }
 }))
