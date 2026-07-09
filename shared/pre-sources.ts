@@ -25,6 +25,14 @@ export const originSources = {
       },
     },
   },
+  "czlai": {
+    name: "CZL AI 公告",
+    type: "realtime",
+    color: "purple",
+    column: "tech",
+    home: "https://ai.czl.net/notice",
+    interval: Time.Common,
+  },
   "sunai": {
     name: "SunAI论坛",
     column: "tech",

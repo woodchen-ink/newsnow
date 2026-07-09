@@ -16,6 +16,14 @@
     "interval": 1800000,
     "title": "最新文章"
   },
+  "czlai": {
+    "name": "CZL AI 公告",
+    "type": "realtime",
+    "column": "tech",
+    "home": "https://ai.czl.net/notice",
+    "color": "purple",
+    "interval": 1800000
+  },
   "sunai": {
     "redirect": "sunai-latest",
     "name": "SunAI论坛",
